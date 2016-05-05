@@ -5,15 +5,32 @@ Matlab 8.1.0.604 (R2013a)               /home/tools/MATLAB/R2013a
 ISE                                     /home/tools/Xilinx/14.7/ISE_DS/ISE
 --------------------------------------------------------------------------------
 Summary of Errors:
-Error 0001: Undriven input port
-     Block: 'radarDFT/ADC2_RXI4/convert_we'
+Error 0001: Illegal parameterization: Sampling rate
+     Block: 'radarDFT/Down Sample'
+Error 0002: Illegal parameterization: Explicit sample period
+     Block: 'radarDFT/Write Count'
 --------------------------------------------------------------------------------
 
 Error 0001:
 
 Reported by:
-  'radarDFT/ADC2_RXI4/convert_we'
+  'radarDFT/Down Sample'
 
 Details:
-The input ports on this block must be driven by other Xilinx blocks
+Sampling rate is set to a value of 0, but the value must be
+greater than or equal to 2.
+Error occurred during "Block Configuration".
+
+--------------------------------------------------------------------------------
+
+Error 0001:
+
+Reported by:
+  'radarDFT/Write Count'
+
+Details:
+Explicit sample period is set to a value of 0, but the value must
+be greater than 0.
+Error occurred during "Block Configuration".
+
 --------------------------------------------------------------------------------
