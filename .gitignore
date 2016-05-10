@@ -1,2 +1,3 @@
+.gitignore~
 radarDFT/*
-!radarDFT/output/*
+!radarDFT/output/
