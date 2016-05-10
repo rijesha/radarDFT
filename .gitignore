@@ -1,3 +1,6 @@
 .gitignore~
 radarDFT/*
 !radarDFT/output/
+*~
+*.autosave
+
