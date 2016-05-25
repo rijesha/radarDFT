@@ -1,0 +1,22 @@
+--------------------------------- Version Log ----------------------------------
+Version                                 Path
+System Generator                        /home/tools/Xilinx/14.7/ISE_DS/ISE/sysgen
+Matlab 8.1.0.604 (R2013a)               /home/tools/MATLAB/R2013a
+ISE                                     /home/tools/Xilinx/14.7/ISE_DS/ISE
+--------------------------------------------------------------------------------
+Summary of Errors:
+Error 0001: Error: s_axis_data_tdata_xn_re and s_axis_data_tdata_xn_i...
+     Block: 'ADC_DFT/FFT MAGIC/Fast Fourier Transform 8.0 '
+--------------------------------------------------------------------------------
+
+Error 0001:
+
+Reported by:
+  'ADC_DFT/FFT MAGIC/Fast Fourier Transform 8.0 '
+
+Details:
+Error: s_axis_data_tdata_xn_re and s_axis_data_tdata_xn_im must
+have the same binary point position
+Error occurred during "Rate and Type Error Checking".
+
+--------------------------------------------------------------------------------

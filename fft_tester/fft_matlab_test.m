@@ -1,6 +1,7 @@
 clc;
 
 %%
+set_param('prelim_FFT_blockFP/numofsamples','value','2^8')
 f = 300;
 fs =1024;
 T=1/fs;
@@ -29,4 +30,12 @@ plot([0:255],Mag(9571:9826))
  %alternate plot
  
 plot(Data_ind.data,re)
+ %%
+ plot(hanningout.Data)
+ 
+ %%
+ %scaleddb
+ 
+ dbscale = 10000;
+ plot([0:255],20*dbscale*log10(Mag(9571:9826)))
  
