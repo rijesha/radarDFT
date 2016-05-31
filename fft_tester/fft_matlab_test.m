@@ -5,9 +5,9 @@ set_param('prelim_FFT_blockFP/numofsamples','value','2^8')
 f = 300;
 fs =1024;
 T=1/fs;
-n = 0:10000;
+n = 0:2^16*8*2;
 t=n*T;
-x=10000*sin(2*pi*f*t);
+x=8192*sin(2*pi*f*t);
 
 data = [n;x]';
 

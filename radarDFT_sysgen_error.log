@@ -5,18 +5,26 @@ Matlab 8.1.0.604 (R2013a)               /home/tools/MATLAB/R2013a
 ISE                                     /home/tools/Xilinx/14.7/ISE_DS/ISE
 --------------------------------------------------------------------------------
 Summary of Errors:
-Error 0001: Error: only signed and floating-point data formats suppor...
-     Block: 'radarDFT/FFT MAGIC/Fast Fourier Transform 8.0 '
+Error 0001: Undriven input port
+     Block: 'radarDFT/Count up once/Rising Edge/Logical'
+Error 0002: Undriven input port
+     Block: 'radarDFT/Count up once/Rising Edge/Register'
 --------------------------------------------------------------------------------
 
 Error 0001:
 
 Reported by:
-  'radarDFT/FFT MAGIC/Fast Fourier Transform 8.0 '
+  'radarDFT/Count up once/Rising Edge/Logical'
 
 Details:
-Error: only signed and floating-point data formats supported:
-invalid value 'arithmetic-type = unsigned'
-Error occurred during "Rate and Type Error Checking".
+The input ports on this block must be driven by other Xilinx blocks
+--------------------------------------------------------------------------------
 
+Error 0001:
+
+Reported by:
+  'radarDFT/Count up once/Rising Edge/Register'
+
+Details:
+The input ports on this block must be driven by other Xilinx blocks
 --------------------------------------------------------------------------------
