@@ -1,4 +1,4 @@
-function [  ] = radar_test_fmc_configure()
+
 %Configures FMC111 parameters, once per fpga programming
 % 
 %setting LO frequency in kHz
@@ -25,22 +25,17 @@ b4d_send_command('127.0.0.1','A','fmc111_set_atten RX AB 2');
 b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq TX AB 915000');
 
 %set the ms filt for the TX
-b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt TX AB xA');
-
-%set the antenuator for the Tx thing?
-b4d_send_command('127.0.0.1','A','fmc111_set_atten TX AB 2');
+%b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt TX AB xA');
 
 
+
+%% Turn on tone
 %set tonetest freq
-fc = .0005; %this line sets the tone frequency. It is in MHz
-
-fs = 245.76; % MHz
-nob = 24; % number of bits in the frequency control word
-fcw = round(fc/fs*(2^nob))
-
-b4d_reg_write('127.0.0.1', 'A', 'freq0', fcw);
+b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq TX AB 2430000')
 
 %set tone gain
-b4d_reg_write('127.0.0.1', 'A', 'tone_gain', hex2dec('400'));
-end
+b4d_reg_write('127.0.0.1', 'A', 'qchannel', 0);
+b4d_reg_write('127.0.0.1', 'A', 'ichannel', 10000); %10000 ~1.5dBm 19999 ~10dBm @2.4 GHz
 
+%% Turn off tone
+b4d_reg_write('127.0.0.1', 'A', 'ichannel', 0);
