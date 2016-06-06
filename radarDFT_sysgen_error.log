@@ -5,15 +5,19 @@ Matlab 8.1.0.604 (R2013a)               /home/tools/MATLAB/R2013a
 ISE                                     /home/tools/Xilinx/14.7/ISE_DS/ISE
 --------------------------------------------------------------------------------
 Summary of Errors:
-Error 0001: Undriven input port
-     Block: 'radarDFT/5MQ/convert_data_in'
+Error 0001: Illegal input type on port: sel
+     Block: 'radarDFT/Mux1'
 --------------------------------------------------------------------------------
 
 Error 0001:
 
 Reported by:
-  'radarDFT/5MQ/convert_data_in'
+  'radarDFT/Mux1'
 
 Details:
-The input ports on this block must be driven by other Xilinx blocks
+The sel port is being driven by a UFix_32_0.
+The sel port must be a Bool or UFix_1_0.
+
+Error occurred during "Rate and Type Error Checking".
+
 --------------------------------------------------------------------------------
