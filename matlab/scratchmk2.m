@@ -1,19 +1,19 @@
 %% scratch mk2
 
 %b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915800')
-b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 3345800')
+%b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915325')
 plottime = 1; %set to 1 to plot time domain
 plotfft = 1; %set to 1 to plot fft
 advlog = 1; % log data higher than 10kHz
 advplot = 1; % plot data higher than 10kHz
-timetolog = 5; %minutes set to 0 to ensure signal is in range
+timetolog = 0; %minutes set to 0 to ensure signal is in range
 samplingrate = 10000; %Hz
 bramsize = 65536;
 
 
 timetofillbram = bramsize/10000;
 
-figure;
+
 
 if timetolog ~= 0
    numoflogs = fix(timetolog*60/timetofillbram);   
@@ -48,6 +48,7 @@ Qdata(ind,:) = Q10k;
 
 half = 65536/2;
 I10kfft = abs(fft(I10k));
+figure;
 plot(I10kfft(half + 1 :end));
 
 

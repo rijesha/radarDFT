@@ -8,7 +8,7 @@
 b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt TX AB xA');
 
 %set tonetest freq
-b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq TX AB 2430000')
+b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq TX AB 915000')
 
 %set tone gain
 b4d_reg_write('127.0.0.1', 'A', 'qchannel', 0);
@@ -27,15 +27,11 @@ b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt TX AB x4');
 b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915000')
 
 %change receiver bandpass filter
-<<<<<<< HEAD
 b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt RX AB xA');
-=======
-b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt RX AB xB');
->>>>>>> 7b849df9430aa8a3762cc33b16508ac4ee70599d
 
 %set attenuation if necessary max 31.5
 b4d_send_command('127.0.0.1','A','fmc111_set_atten RX AB 2.5');
 
 %set gain if necessary min 4.5 max 20.25
-b4d_send_command('127.0.0.1','A','fmc111_set_vga_gain AB 15');
+b4d_send_command('127.0.0.1','A','fmc111_set_vga_gain AB 10');
 
