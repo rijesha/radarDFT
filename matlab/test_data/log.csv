@@ -1,0 +1,6 @@
+,,,,,,,,,,,,,
+,Date,Time,Description,RX Lo Freq,BP filter,atten,vga gain,,TX LO freq,BP filter,qcahnnel,ichannel,Bin File
+,2016-06-09,10:06:00,Tested freq drift of 900 Mhz osc for 10 minutes at ~7 s intervals. Sampling at 10k.,915800,xA,2.5,15,,N/A,N/A,N/A,N/A,20160606_1536
+,2016-06-09,10:26:00,Tested freq drift of 3.3 Ghz osc for 10 minutes at ~7 s intervals. Sampling at 10k.,3345800,xB,2.5,15,,2430000,xA,0,10000,20160606_1536
+,2016-06-09,11:55:00,"Tested freq doppler and power of 3.3 Ghz osc for 10 minutes at ~7 s intervals. Sampling at 10k. Log12 antennas are perpendiculr, log 13-19 ant 45 deg, log 20-29 ant are axial, log 29-32,37,44,45 swinging pie plate,  log 75,76 wsinging pie plate with meter stick. 1.5m ish",3345800,xB,2.5,15,,2430000,xA,0,10000,20160606_1536
+,2016-06-09,14:26:00,"Tested freq doppler and power of 3.3 Ghz osc for 5 minutes at ~7 s intervals. Sampling at 10k. 11,12 waving intermittent, 15-19 waving along ant axis, 25-29 waving like flight, 34-36 close in plastic lid, 42 arm waving",3345800,xB,2.5,15,,2430000,xA,0,10000,20160606_1536

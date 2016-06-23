@@ -27,7 +27,11 @@ b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt TX AB x4');
 b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915000')
 
 %change receiver bandpass filter
+<<<<<<< HEAD
 b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt RX AB xA');
+=======
+b4d_send_command('127.0.0.1','A','fmc111_set_ms_filt RX AB xB');
+>>>>>>> 7b849df9430aa8a3762cc33b16508ac4ee70599d
 
 %set attenuation if necessary max 31.5
 b4d_send_command('127.0.0.1','A','fmc111_set_atten RX AB 2.5');
