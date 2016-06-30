@@ -1,11 +1,11 @@
 %% simple proc
 useQdata = 1;
 rmdc = 1;
-plotfullspect = 0; %plot the full raw fft spectrum
-plotint = 0; %plot area of int
-plotavgrm = 0; %plot are of interest mius avg
-plotavgs = 0; %plot the average spectrums for each log
-plotlogs = 0; %plot and overlay of the slices from each log. (will gen a lot of graphs)
+plotfullspect = 1; %plot the full raw fft spectrum
+plotint = 1; %plot area of int
+plotavgrm = 1; %plot are of interest mius avg
+plotavgs = 1; %plot the average spectrums for each log
+plotlogs = 1; %plot and overlay of the slices from each log. (will gen a lot of graphs)
 drifttest = 1;
 
 
@@ -13,7 +13,7 @@ drifttest = 1;
 figure;
 bramsize = 65536;
 FFT = {};
-numofbins = bramsize/16;
+numofbins = bramsize/32;
 numberoflogs = numel(Idata)/length(Idata);
 maxfreq = 5000;
 xaxis = linspace(((numofbins-1)/(numofbins)),((numofbins-1)/(numofbins))*maxfreq*2,numofbins);
@@ -37,8 +37,8 @@ for log=1:(numberoflogs)
         plot(abs(fft(tmp)))
     end
     
-    for n=1:16
-        tmp2 = tmp((bramsize/16*(n-1)+1):(bramsize/16*(n)));
+    for n=1:32
+        tmp2 = tmp((bramsize/32*(n-1)+1):(bramsize/32*(n)));
         FFT{log}(n,:) = abs(fft(tmp2));
         
         if plotfullspect
@@ -54,7 +54,7 @@ figure;
 doppler = [];
 signal = {};
 for log=1:(numberoflogs)
-    for n=1:16
+    for n=1:32
         dat = FFT{log}(n,:);
         [pks, srtind] = findpeaks(dat);
         [pks, pksind]=sort(pks,'descend');
@@ -68,6 +68,7 @@ for log=1:(numberoflogs)
         sigcol = 'b';
         pausetime = .01;
         catch
+            try
             fprintf('Index failure. Shifting signal. \n');
             dat = circshift(dat,[0 2048]);
             [pks, srtind] = findpeaks(dat);
@@ -77,6 +78,7 @@ for log=1:(numberoflogs)
             datnew = dat(ind-20:ind+20);
             sigcol = 'r';
 %            pausetime = .01;
+            end
         end
         
         
@@ -100,12 +102,12 @@ doppler2 = [];
 avgsig = cell(0,numberoflogs);
 for log=1:(numberoflogs)
     avgsig{log} = zeros(1,41);
-    for n=1:16
+    for n=1:32
         avgsig{log} = avgsig{log} +signal{log}(n,:);
     end
-    avgsig{log} = avgsig{log}/16;
+    avgsig{log} = avgsig{log}/32;
     
-    for n=1:16
+    for n=1:32
         if plotavgrm
             plot(xnew, signal{log}(n,:)-avgsig{log});
             title(sprintf('log %d slice %d',log,n))
@@ -118,8 +120,8 @@ end
 
 figure;
 hold on
-plot(doppler2,linspace(0,numberoflogs,numberoflogs*16),'r')
-plot(doppler,linspace(0,numberoflogs,numberoflogs*16))
+plot(doppler2,linspace(0,numberoflogs,numberoflogs*32),'r')
+plot(doppler,linspace(0,numberoflogs,numberoflogs*32))
 
 %% plot averages
 
@@ -139,7 +141,7 @@ if plotlogs ==1
         figure;
         title(sprintf('log %d',log))
         hold on
-        for n=1:16
+        for n=1:32
             plot(xnew,signal{log}(n,:)) 
             pause(.01)
         end
@@ -150,7 +152,7 @@ if plotlogs ==1
 end
 
 %% drift test
-
+figure;
 if drifttest
     driftmesh = [];
     for log=1:(numberoflogs)

@@ -1,14 +1,18 @@
 %% scratch mk2
 
 %b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915800')
-%b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915325')
+%b4d_send_command('127.0.0.1','A','fmc111_set_lo_freq RX AB 915000')
 plottime = 1; %set to 1 to plot time domain
 plotfft = 1; %set to 1 to plot fft
 advlog = 1; % log data higher than 10kHz
 advplot = 1; % plot data higher than 10kHz
-timetolog = 0; %minutes set to 0 to ensure signal is in range
+timetolog = 1; %minutes set to 0 to ensure signal is in range
 samplingrate = 10000; %Hz
 bramsize = 65536;
+freqbase = 3345300;
+stepfreq = 0;
+stepgain = 1;
+gain = 10;
 
 
 timetofillbram = bramsize/10000;
@@ -32,7 +36,23 @@ if advlog == 1
     Qdata250M = zeros(numoflogs,bramsize);
 end
 
+
 for ind = 1:numoflogs
+
+if stepfreq ~= 0
+    freq = freqbase+stepfreq*ind;
+else
+    freq = freqbase;
+end
+
+cmd = sprintf('fmc111_set_lo_freq RX AB %d',freq);
+b4d_send_command('127.0.0.1','A',cmd)
+    
+if mod(ind,2) == 0
+   color = 'r';
+else
+   color = 'b';
+end
 
 b4d_reg_write('127.0.0.1','A','capture', 1);%writeenable
 b4d_reg_write('127.0.0.1','A','capture', 0);%writeenable
@@ -46,14 +66,21 @@ Q10k = uint32castfix(b4d_bram_read('127.0.0.1','A','10kQ',65536),1,18);
 Idata(ind,:) = I10k;
 Qdata(ind,:) = Q10k;
 
+fprintf(cmd);
+fprintf('\n');
 half = 65536/2;
 I10kfft = abs(fft(I10k));
 figure;
-plot(I10kfft(half + 1 :end));
+subplot(2,1,1)
+plot(I10kfft(half + 1 :end),color);
+subplot(2,1,2)
+plot(I10k,color);
+title(sprintf('%d',freq))
 
 
 fprintf('log number: %d \n',ind)
 fprintf('elapse time (min) : %d \n',ind*timetofillbram/60)
+
 
 end
 
